@@ -1,11 +1,12 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 const app = express();
 app.use(express.json());
 
-const usuariosFile = 'usuarios.json';
-const productosFile = 'productos.json';
-const ventasFile = 'ventas.json';
+const usuariosFile = path.join(__dirname, 'data', 'usuarios.json');
+const productosFile = path.join(__dirname, 'data', 'productos.json');
+const ventasFile = path.join(__dirname, 'data', 'ventas.json');
 
 // Leer datos desde un archivo JSON
 const readData = (file) => {
@@ -17,13 +18,13 @@ const saveData = (file, data) => {
     fs.writeFileSync(file, JSON.stringify(data, null, 2));
 };
 
-//  GET  obtener todos los usuarios
+// GET obtener todos los usuarios
 app.get('/usuarios', (req, res) => {
     const usuarios = readData(usuariosFile);
     res.json(usuarios);
 });
 
-//  GET  obtener un usuario por ID
+// GET obtener un usuario por ID
 app.get('/usuarios/:id', (req, res) => {
     const usuarios = readData(usuariosFile);
     const usuario = usuarios.find(u => u.id === parseInt(req.params.id));
@@ -51,7 +52,7 @@ app.post('/productos/buscar', (req, res) => {
     if (producto) {
         res.json(producto);
     } else {
-        res.status(404).send('Producto no encontrado');
+        res.status(404).send('Producto no existe');
     }
 });
 
@@ -68,6 +69,8 @@ app.put('/usuarios/:id', (req, res) => {
     }
 });
 
+
+
 // DELETE eliminar usuario por ID
 app.delete('/usuarios/:id', (req, res) => {
     let usuarios = readData(usuariosFile);
@@ -83,7 +86,7 @@ app.delete('/usuarios/:id', (req, res) => {
     }
 });
 
-// Iniciar servidor
+// Iniciar serv
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
