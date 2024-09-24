@@ -1,43 +1,49 @@
-[
-    {
-        "id": 101,
-        "nombre": "Camion Juguete",
-        "desc": "Camion de juguete rojo a control remoto apto para niños",
-        "precio": 1000,
-        "imagen": "storage/camionjuguete.webp",
-        "disponible": true
-    },
-    {
-        "id": 102,
-        "nombre": "Muñeca Genshin Impact",
-        "desc": "Muñeca de peluche Furina Genshin Impact",
-        "precio": 1500,
-        "imagen": "storage/furinadoll.webp",
-        "disponible": true
-    },
-    {
-        "id": 103,
-        "nombre": "JugueteSorpresa1",
-        "desc": "Caja de juguetes sorpresa Disney",
-        "precio": 2000,
-        "imagen": "storage/sorpresa1.webp",
-        "disponible": false
-    },
-    {
-        "id": 104,
-        "nombre": "JugueteSorpresa2",
-        "desc": "Caja de juguetes sorpresa Despicable Me",
-        "precio": 2000,
-        "imagen": "storage/sorpresa2.webp",
-        "disponible": true
-    },
-    {
-        "id": 105,
-        "nombre": "JugueteSorpresa3",
-        "desc": "Caja de juguetes sorpresa Gatitos",
-        "precio": 2000,
-        "imagen": "storage/sorpresa3.webp",
-        "disponible": false
-    }
-    
-]
+{
+    "categories": [
+        {
+            "name": "Juguetes",
+            "products": [
+                {
+                    "id": 101,
+                    "name": "Camion Juguete",
+                    "price": 1000,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/camionjuguete.webp",
+                    "description": "Camion de juguete rojo a control remoto apto para niños",
+                    "available": true
+                },
+                {
+                    "id": 102,
+                    "name": "Muñeca Genshin Impact",
+                    "price": 1500,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/furinadoll.webp",
+                    "description": "Muñeca de peluche Furina Genshin Impact",
+                    "available": true
+                },
+                {
+                    "id": 103,
+                    "name": "Sorpresa Toys Story",
+                    "price": 2000,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/sorpresa1.webp",
+                    "description": "Caja de juguetes sorpresa Disney",
+                    "available": false
+                },
+                {
+                    "id": 104,
+                    "name": "Sorpresa Despicable Me",
+                    "price": 2000,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/sorpresa2.webp",
+                    "description": "Caja de juguetes sorpresa Despicable Me",
+                    "available": true
+                },
+                {
+                    "id": 105,
+                    "name": "Sorpresa Gatitos",
+                    "price": 2000,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/sorpresa3.webp",
+                    "description": "Caja de juguetes sorpresa Gatitos",
+                    "available": false
+                }
+            ]
+        }
+    ]
+}
