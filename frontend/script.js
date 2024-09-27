@@ -210,3 +210,59 @@ function realizarCompra() {
     updateCartUI();
     updateTotal(0);
 }
+
+// Obtener productos desde el servidor
+fetch('/api/products')
+    .then(response => response.json())
+    .then(data => {
+    console.log(data);
+    })
+.catch(error => console.error('Error al obtener los productos:', error));
+
+// Filtrar productos por categoría
+const categoria = 'electronica'; 
+fetch(`/api/products/filter?categoria=${categoria}`)
+    .then(response => response.json())
+    .then(data => {
+    console.log(data);
+    })
+.catch(error => console.error('Error al filtrar productos:', error));
+
+// Enviar orden de compra al servidor
+const productosSeleccionados = JSON.parse(localStorage.getItem('carrito'));
+const usuario = { id: 1, nombre: 'Juan Pérez' };
+
+fetch('/api/products/order', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ productos: productosSeleccionados, usuario })
+})
+    .then(response => response.json())
+    .then(data => {
+    console.log(data); 
+    alert('Compra realizada con éxito');
+    })
+.catch(error => console.error('Error al realizar la compra:', error));
+
+document.getElementById('categoryFilter').addEventListener('change', function (event) {
+    const selectedCategory = event.target.value;
+    const productContainer = document.getElementById('productcontainerJug');
+    productContainer.innerHTML = ''; // Limpiar productos antes de renderizar
+
+    if (selectedCategory === 'Todos') {
+        // Llamar a renderProducts para cada categoría si se selecciona 'Todos'
+        ['Peluches', 'Autitos', 'Sorpresas'].forEach(category => {
+            renderProducts('productcontainerJug', category);
+        });
+    } else {
+        renderProducts('productcontainerJug', selectedCategory);
+    }
+});
+
+window.onload = function () {
+    ['Peluches', 'Autitos', 'Sorpresas'].forEach(category => {
+        renderProducts('productcontainerJug', category);
+    });
+};

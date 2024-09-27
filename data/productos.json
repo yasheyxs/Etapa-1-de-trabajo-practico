@@ -1,7 +1,20 @@
 {
     "categories": [
         {
-            "name": "Juguetes",
+            "name": "Peluches",
+            "products": [
+                {
+                    "id": 102,
+                    "name": "Muñeca Genshin Impact",
+                    "price": 1500,
+                    "image": "/Etapa-1-de-trabajo-practico/storage/furinadoll.webp",
+                    "description": "Muñeca de peluche Furina Genshin Impact",
+                    "available": true
+                }
+            ]
+        },
+        {
+            "name": "Autitos",
             "products": [
                 {
                     "id": 101,
@@ -10,22 +23,19 @@
                     "image": "/Etapa-1-de-trabajo-practico/storage/camionjuguete.webp",
                     "description": "Camion de juguete rojo a control remoto apto para niños",
                     "available": true
-                },
-                {
-                    "id": 102,
-                    "name": "Muñeca Genshin Impact",
-                    "price": 1500,
-                    "image": "/Etapa-1-de-trabajo-practico/storage/furinadoll.webp",
-                    "description": "Muñeca de peluche Furina Genshin Impact",
-                    "available": true
-                },
+                }
+            ]
+        },
+        {
+            "name": "Sorpresas",
+            "products": [
                 {
                     "id": 103,
                     "name": "Sorpresa Toys Story",
                     "price": 2000,
                     "image": "/Etapa-1-de-trabajo-practico/storage/sorpresa1.webp",
                     "description": "Caja de juguetes sorpresa Disney",
-                    "available": false
+                    "available": true
                 },
                 {
                     "id": 104,
@@ -41,7 +51,7 @@
                     "price": 2000,
                     "image": "/Etapa-1-de-trabajo-practico/storage/sorpresa3.webp",
                     "description": "Caja de juguetes sorpresa Gatitos",
-                    "available": false
+                    "available": true
                 }
             ]
         }
