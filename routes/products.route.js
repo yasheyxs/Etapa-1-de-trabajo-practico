@@ -5,7 +5,7 @@ const path = require('path');
 
 // Obtener listado de productos
 router.get('/', (req, res) => {
-    const productosFile = path.join(__dirname, '../data/productos.json');
+    const productosFile = path.join(__dirname, '/data/productos.json');
     fs.readFile(productosFile, 'utf-8', (err, data) => {
     if (err) {
         return res.status(500).json({ message: 'Error al leer el archivo de productos' });
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // Filtrar productos por categoría
 router.get('/filter', (req, res) => {
     const { categoria } = req.query;
-    const productosFile = path.join(__dirname, '../data/productos.json');
+    const productosFile = path.join(__dirname, '/data/productos.json');
     
     fs.readFile(productosFile, 'utf-8', (err, data) => {
     if (err) {
@@ -40,7 +40,7 @@ module.exports = router;
 // Crear una orden de compra
 router.post('/order', (req, res) => {
     const { productos, usuario } = req.body;
-    const ventasFile = path.join(__dirname, '/Etapa-1-de-trabajo-practico/data/ventas.json');
+    const ventasFile = path.join(__dirname, '/data/ventas.json');
 
     fs.readFile(ventasFile, 'utf-8', (err, data) => {
         if (err) {

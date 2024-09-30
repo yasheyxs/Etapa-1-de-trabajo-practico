@@ -1,7 +1,7 @@
 import express from 'express';
-import usersRoutes from './utils/utils/users.route.js';
+import usersRoutes from './routes/users.route.js';
 import productsRoutes from './routes/products.route.js';
-import salesRoutes from './routes/sales.route.js';
+import salesRoutes from './routes/sells.route.js';
 
 const app = express();
 app.use(express.json());

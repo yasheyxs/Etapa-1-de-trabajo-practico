@@ -23,14 +23,12 @@ function renderProducts(container, category) {
     const productContainer = document.getElementById(container);
 
     if (productContainer) {
-        //solicitud fetch para obtener datos de productos desde el JSON
-        fetch('/Etapa-1-de-trabajo-practico/data/productos.json')
+        fetch('/data/productos.json')
             .then(res => res.json())
             .then(data => {
                 const products = data.categories.find(cat => cat.name === category);
 
                 if (products) {
-                    // Crear cards para cada producto y agregarlas al contenedor
                     products.products.forEach(product => {
                         const card = createCard({ ...product, category: category });
                         productContainer.appendChild(card);
@@ -46,7 +44,6 @@ function renderProducts(container, category) {
 }
 
 function stepper(input, isIncrement) {
-    // Obtener valores de atributos del input
     let min = parseInt(input.getAttribute("min"));
     let max = parseInt(input.getAttribute("max"));
     let step = parseInt(input.getAttribute("step"));
@@ -54,7 +51,6 @@ function stepper(input, isIncrement) {
     let calcStep = isIncrement ? step : -step;
     let newValue = val + calcStep;
 
-    // Asegurarse de que el nuevo valor esté dentro de los límites
     if (newValue >= min && newValue <= max) {
         input.value = newValue;
     }
@@ -62,12 +58,10 @@ function stepper(input, isIncrement) {
 
 // Función asincrónica para agregar un producto al carrito
 async function addToCart(productId) {
-    // Obtener el producto por su ID
     const product = await getProductById(productId);
     const quantityInput = document.getElementById(`my-input-${productId}`);
     const quantity = parseInt(quantityInput.value, 10);
 
-    // Verificar la validez de la cantidad y la existencia del producto
     if (!isNaN(quantity) && quantity > 0 && product) {
         const cartItem = { ...product, quantity };
         addToLocalStorageCart(cartItem);
@@ -92,7 +86,7 @@ function closeNotification() {
 // Función asincrónica para obtener un producto por su ID
 async function getProductById(productId) {
     try {
-        const response = await fetch('/Etapa-1-de-trabajo-practico/data/productos.json');
+        const response = await fetch('/data/productos.json');
         const data = await response.json();
         for (const category of data.categories) {
             const product = category.products.find(p => p.id === productId);
@@ -112,7 +106,6 @@ function addToLocalStorageCart(cartItem) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingItem = cart.find(item => item.id === cartItem.id);
 
-    // Actualizar la cantidad si el artículo ya está en el carrito, de lo contrario, agregarlo
     if (existingItem) {
         existingItem.quantity += cartItem.quantity;
     } else {
@@ -211,46 +204,10 @@ function realizarCompra() {
     updateTotal(0);
 }
 
-// Obtener productos desde el servidor
-fetch('/api/products')
-    .then(response => response.json())
-    .then(data => {
-    console.log(data);
-    })
-.catch(error => console.error('Error al obtener los productos:', error));
-
-// Filtrar productos por categoría
-const categoria = 'electronica'; 
-fetch(`/api/products/filter?categoria=${categoria}`)
-    .then(response => response.json())
-    .then(data => {
-    console.log(data);
-    })
-.catch(error => console.error('Error al filtrar productos:', error));
-
-// Enviar orden de compra al servidor
-const productosSeleccionados = JSON.parse(localStorage.getItem('carrito'));
-const usuario = { id: 1, nombre: 'Juan Pérez' };
-
-fetch('/api/products/order', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ productos: productosSeleccionados, usuario })
-})
-    .then(response => response.json())
-    .then(data => {
-    console.log(data); 
-    alert('Compra realizada con éxito');
-    })
-.catch(error => console.error('Error al realizar la compra:', error));
-
 document.getElementById('categoryFilter').addEventListener('change', function (event) {
     const selectedCategory = event.target.value;
     const productContainer = document.getElementById('productcontainerJug');
-    productContainer.innerHTML = ''; // Limpiar productos antes de renderizar
-
+    productContainer.innerHTML = ''; // Limpiar productos
     if (selectedCategory === 'Todos') {
         // Llamar a renderProducts para cada categoría si se selecciona 'Todos'
         ['Peluches', 'Autitos', 'Sorpresas'].forEach(category => {

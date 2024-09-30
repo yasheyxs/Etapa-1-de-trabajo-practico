@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { readData, saveData } from '../utils/dataHandler.js';
+import { readData, saveData } from '../utils/dataHandler';
 import path from 'path';
 
 const router = Router();
